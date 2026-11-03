@@ -1,0 +1,1217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Betrothal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue: #b7a9c9;
+  --deep-blue: #30264f;
+  --ivory: #fcfaff;
+  --silver: #ded6e8;
+  --ink: #514766;
+  --accent: #d8c7ed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #101f3d;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+/* SNOWFALL */
+
+.snow-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.snowflake {
+  position: absolute;
+  top: -30px;
+  color: #ffffff;
+  opacity: .9;
+  text-shadow: 0 0 8px #d9c8ff,
+               0 0 15px #ffffff;
+  animation: snowfall linear infinite;
+  user-select: none;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: .95; }
+  90% { opacity: .85; }
+  100% {
+    transform: translate3d(80px, 110vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* BACKGROUND DETAILS */
+
+.frost {
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(35px);
+  background: #b9c9ff;
+  opacity: .35;
+}
+
+.frost-one {
+  width: 180px;
+  height: 180px;
+  top: 8%;
+  left: -60px;
+}
+
+.frost-two {
+  width: 220px;
+  height: 220px;
+  bottom: 8%;
+  right: -80px;
+}
+
+.floating {
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  color: #e2d4ff;
+  opacity: .75;
+  animation: float 8s ease-in-out infinite;
+}
+
+.floating.one {
+  top: 18%;
+  left: 7%;
+  font-size: 25px;
+}
+
+.floating.two {
+  top: 68%;
+  right: 8%;
+  font-size: 30px;
+  animation-delay: 2s;
+}
+
+.floating.three {
+  bottom: 12%;
+  left: 15%;
+  font-size: 18px;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-18px) rotate(15deg);
+  }
+}
+
+/* OPENING SCREEN */
+
+.opening {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.opening-inner {
+  width: min(490px, 100%);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.top-label {
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #f4eefe;
+  margin-bottom: 18px;
+  text-shadow: 0 0 10px #bca9e8;
+}
+
+.opening-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(48px, 9vw, 72px);
+  color: #fffaff;
+  font-weight: 400;
+  margin: 0 0 8px;
+  text-shadow: 0 2px 15px #b9a4e9,
+               0 0 25px #ffffff80;
+}
+
+.opening-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: #eee5ff;
+  margin-bottom: 40px;
+  text-shadow: 0 0 10px #c5b5ee;
+}
+
+/* ENVELOPE */
+
+.pocket-area {
+  width: 310px;
+  height: 270px;
+  max-width: 90%;
+  margin: 0 auto;
+  position: relative;
+  perspective: 1100px;
+}
+
+.pocket-shadow {
+  position: absolute;
+  width: 90%;
+  height: 35px;
+  background: #c4b1ef;
+  opacity: .3;
+  filter: blur(18px);
+  bottom: 4px;
+  left: 5%;
+  border-radius: 50%;
+}
+
+/* INVITATION CARD */
+
+.invitation-card {
+  width: 83%;
+  height: 235px;
+  position: absolute;
+  left: 8.5%;
+  top: 0;
+  z-index: 1;
+  padding: 22px 12px;
+  overflow: hidden;
+
+  background: linear-gradient(
+    145deg,
+    #fffefa,
+    #f4effa
+  );
+
+  border: 1px solid #ffffff;
+  outline: 1px solid #c7b4dd;
+  outline-offset: -7px;
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.3),
+    inset 0 0 25px rgba(255,255,255,.8);
+
+  transition: transform 1.4s cubic-bezier(.2,.8,.2,1);
+}
+
+.invitation-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      125deg,
+      transparent 25%,
+      rgba(255,255,255,.8) 45%,
+      transparent 65%
+    );
+  transform: translateX(-120%);
+  animation: shimmer 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  60%, 100% {
+    transform: translateX(120%);
+  }
+}
+
+.card-flower {
+  font-size: 23px;
+  color: #80649f;
+  position: relative;
+  z-index: 2;
+}
+
+.card-small {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: #44365f;
+  font-weight: 600;
+  margin-top: 7px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 27px;
+  color: #30234e;
+  margin: 8px 0 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 25px;
+  color: #382956;
+  line-height: 1.15;
+  margin-top: 9px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-ampersand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: #80649f;
+  margin: 1px 0;
+}
+
+/* ENVELOPE FRONT */
+
+.pocket-front {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 175px;
+
+  background: linear-gradient(
+    145deg,
+    #e5ddec,
+    #bbaaca
+  );
+
+  clip-path: polygon(
+    0 0,
+    50% 42%,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+
+  z-index: 3;
+  border-radius: 3px;
+}
+
+.pocket-side {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 175px;
+  background: #d3c6df;
+
+  clip-path: polygon(
+    0 0,
+    50% 55%,
+    100% 0,
+    50% 100%
+  );
+
+  z-index: 2;
+}
+
+.pocket-top {
+  position: absolute;
+  top: 91px;
+  width: 100%;
+  height: 75px;
+
+  background: linear-gradient(
+    135deg,
+    #d2c5df,
+    #f5f0fa
+  );
+
+  clip-path: polygon(
+    0 0,
+    50% 100%,
+    100% 0
+  );
+
+  z-index: 4;
+  transform-origin: top center;
+  transition: transform .9s ease;
+}
+
+/* RIBBON */
+
+.ribbon {
+  position: absolute;
+  width: 25px;
+  height: 270px;
+  left: calc(50% - 12px);
+  top: 0;
+
+  background: linear-gradient(
+    90deg,
+    #f5eff7,
+    #c1a9c8,
+    #faf5fc
+  );
+
+  z-index: 5;
+  opacity: .95;
+}
+
+/* SEAL */
+
+.seal-button {
+  position: absolute;
+  z-index: 7;
+  left: 50%;
+  top: 155px;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 1px solid #a38da9;
+
+  background: radial-gradient(
+    circle at 35% 30%,
+    #dfcde4,
+    #80648f
+  );
+
+  color: #ffffff;
+  font-size: 26px;
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 12px #75648755,
+    inset 0 0 0 4px #ffffff55;
+
+  transition: transform .3s, opacity .4s;
+}
+
+.seal-button:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
+.open-hint {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #fffaff;
+  margin-top: 32px;
+  animation: pulse 2s infinite;
+  text-shadow: 0 0 12px #c7b4f0;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+/* OPENING ANIMATION */
+
+.opening.opened .pocket-top {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.opening.opened .invitation-card {
+  transform: translateY(-165px);
+  z-index: 6;
+}
+
+.opening.opened .seal-button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.opening.opened .ribbon {
+  opacity: 0;
+  transition: opacity .4s;
+}
+
+.opening.opened .pocket-front {
+  opacity: .2;
+  transition: opacity .7s;
+}
+
+/* INVITATION CONTENT */
+
+#invitationContent {
+  display: none;
+}
+
+body.invitation-open #invitationContent {
+  display: block;
+  animation: reveal .9s ease both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MAIN INVITATION */
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 18px 80px;
+}
+
+.paper {
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  padding: clamp(28px, 7vw, 70px);
+  position: relative;
+
+  box-shadow: 0 15px 55px #00000030;
+  border: 1px solid #e8dff0;
+  text-align: center;
+}
+
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #d9cde3;
+  pointer-events: none;
+}
+
+.ornament {
+  color: #80649f;
+  letter-spacing: 8px;
+  font-size: 18px;
+  margin: 15px 0;
+}
+
+.eyebrow {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #756487;
+}
+
+.script-heading {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(43px, 8vw, 68px);
+  color: #30264f;
+  font-weight: 400;
+  margin: 20px 0 5px;
+}
+
+.intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
+  line-height: 1.7;
+  max-width: 590px;
+  margin: 20px auto;
+  color: #625a70;
+}
+
+/* COUPLE NAMES */
+
+.couple-names {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 35px 0 15px;
+}
+
+.person-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(43px, 8vw, 65px);
+  color: #30264f;
+}
+
+.ampersand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  color: #9a80ad;
+}
+
+/* FAMILY DETAILS */
+
+.family {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.7;
+  margin: 20px auto 30px;
+  color: #625a70;
+}
+
+.family strong {
+  display: block;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #80649f;
+}
+
+/* DATE AND TIME */
+
+.date-panel {
+  margin: 35px auto;
+  padding: 23px 15px;
+  max-width: 470px;
+  border-top: 1px solid #c9b9d9;
+  border-bottom: 1px solid #c9b9d9;
+}
+
+.date-panel .month {
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #756487;
+}
+
+.date-panel .day {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 62px;
+  line-height: 1.1;
+  color: #30264f;
+}
+
+.date-panel .year {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #514766;
+}
+
+.ceremony-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: #30264f;
+  margin-top: 17px;
+  letter-spacing: 2px;
+}
+
+.ceremony-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #756487;
+  margin-top: 7px;
+}
+
+/* COUNTDOWN */
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.time-box {
+  width: 75px;
+  padding: 12px 5px;
+  background: #eee8f5;
+  border: 1px solid #d8cce5;
+}
+
+.time-box strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  color: #30264f;
+}
+
+.time-box span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #514766;
+}
+
+/* VENUES */
+
+.venue-section {
+  margin-top: 55px;
+}
+
+.section-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 43px;
+  font-weight: 400;
+  color: #30264f;
+  margin: 10px 0;
+}
+
+.venue-card {
+  background: #f5f1f9;
+  border: 1px solid #ded2e9;
+  padding: 27px 20px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.venue-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #80649f;
+}
+
+.venue-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 27px;
+  color: #382956;
+  margin: 12px 0;
+}
+
+.venue-address {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #625a70;
+}
+
+.qr {
+  width: 125px;
+  height: 125px;
+  display: block;
+  margin: 18px auto;
+  border: 7px solid white;
+  box-shadow: 0 2px 10px #75648730;
+}
+
+.map-link {
+  display: inline-block;
+  padding: 11px 22px;
+  border: 1px solid #80649f;
+  color: #49355f;
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: .3s;
+}
+
+.map-link:hover {
+  background: #e3d9ed;
+}
+
+/* FOOTER */
+
+.footer {
+  text-align: center;
+  padding: 45px 10px 10px;
+}
+
+.footer-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 45px;
+  color: #30264f;
+}
+
+.footer-small {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #756487;
+  margin-top: 12px;
+}
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+  .pocket-area {
+    transform: scale(.9);
+    transform-origin: top center;
+    margin-bottom: -25px;
+  }
+
+  .paper {
+    padding: 35px 23px;
+  }
+
+  .family {
+    font-size: 17px;
+  }
+
+  .time-box {
+    width: 65px;
+  }
+
+  .opening-title {
+    font-size: 49px;
+  }
+
+  .opening-subtitle {
+    font-size: 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SNOWFLAKES -->
+
+<div class="snow-container" id="snowContainer"></div>
+
+<div class="frost frost-one"></div>
+<div class="frost frost-two"></div>
+
+<div class="floating one">✧</div>
+<div class="floating two">❀</div>
+<div class="floating three">✿</div>
+
+<!-- OPENING SCREEN -->
+
+<section class="opening" id="opening">
+
+  <div class="opening-inner">
+
+    <div class="top-label">
+      A little celebration of love
+    </div>
+
+    <h1 class="opening-title">
+      A Promise of Forever
+    </h1>
+
+    <div class="opening-subtitle">
+      A beautiful beginning...
+    </div>
+
+    <!-- ENVELOPE -->
+
+    <div class="pocket-area">
+
+      <div class="pocket-shadow"></div>
+
+      <!-- INVITATION CARD -->
+
+      <div class="invitation-card">
+
+        <div class="card-flower">✿</div>
+
+        <div class="card-small">
+          TOGETHER WITH THEIR FAMILIES
+        </div>
+
+        <div class="card-script">
+          The Betrothal of
+        </div>
+
+        <div class="card-names">
+          Navya
+          <div class="card-ampersand">&</div>
+          Jerin
+        </div>
+
+        <div class="card-small">
+          WITH LOVE AND BLESSINGS
+        </div>
+
+        <div class="card-flower" style="margin-top:8px">
+          ❀
+        </div>
+
+      </div>
+
+      <!-- ENVELOPE PARTS -->
+
+      <div class="pocket-side"></div>
+      <div class="pocket-front"></div>
+      <div class="pocket-top"></div>
+      <div class="ribbon"></div>
+
+      <!-- HEART SEAL -->
+
+      <button
+        class="seal-button"
+        onclick="openInvitation()"
+        aria-label="Open invitation">
+        ♥
+      </button>
+
+    </div>
+
+    <div class="open-hint" id="openHint">
+      Untie the ribbon to reveal the invitation
+    </div>
+
+  </div>
+
+</section>
+
+<!-- INVITATION DETAILS -->
+
+<div id="invitationContent">
+
+<main>
+
+<section class="paper">
+
+  <div class="ornament">✧ ❀ ✧</div>
+
+  <div class="eyebrow">
+    Together with our families
+  </div>
+
+  <h2 class="script-heading">
+    With joyful hearts
+  </h2>
+
+  <p class="intro">
+    With the blessings of God and the love of our families,
+    we joyfully invite you to celebrate the beginning of our
+    beautiful journey together.
+  </p>
+
+  <!-- COUPLE NAMES -->
+
+  <div class="couple-names">
+
+    <div class="person-name">Navya</div>
+
+    <div class="ampersand">&</div>
+
+    <div class="person-name">Jerin</div>
+
+  </div>
+
+  <!-- FAMILY DETAILS -->
+
+  <div class="family">
+
+    <strong>Daughter of</strong>
+
+    Raphy J Chazhoor & Neeno Raphy
+
+  </div>
+
+  <div class="family">
+
+    <strong>Son of</strong>
+
+    Wilson M.K (Late) & Alphonsa Wilson
+
+  </div>
+
+  <div class="ornament">✧ ❀ ✧</div>
+
+  <p class="intro">
+    Request the pleasure of your presence and blessings
+    at their betrothal ceremony.
+  </p>
+
+  <!-- DATE AND TIME -->
+
+  <div class="date-panel">
+
+    <div class="month">January</div>
+
+    <div class="day">30</div>
+
+    <div class="year">2027</div>
+
+    <div class="ceremony-time">11:00 AM</div>
+
+    <div class="ceremony-label">
+      Betrothal Ceremony
+    </div>
+
+  </div>
+
+  <!-- COUNTDOWN -->
+
+  <div class="eyebrow">
+    The celebration begins in
+  </div>
+
+  <div class="countdown">
+
+    <div class="time-box">
+      <strong id="days">00</strong>
+      <span>Days</span>
+    </div>
+
+    <div class="time-box">
+      <strong id="hours">00</strong>
+      <span>Hours</span>
+    </div>
+
+    <div class="time-box">
+      <strong id="minutes">00</strong>
+      <span>Minutes</span>
+    </div>
+
+    <div class="time-box">
+      <strong id="seconds">00</strong>
+      <span>Seconds</span>
+    </div>
+
+  </div>
+
+  <div class="ornament">✧ ❀ ✧</div>
+
+  <!-- CHURCH -->
+
+  <section class="venue-section">
+
+    <div class="eyebrow">
+      The sacred ceremony
+    </div>
+
+    <h3 class="section-title">
+      The Church
+    </h3>
+
+    <div class="venue-card">
+
+      <div class="venue-label">
+        Betrothal Ceremony
+      </div>
+
+      <div class="venue-name">
+        St. Joseph's Church
+      </div>
+
+      <div class="venue-address">
+        Kuriachira, Thrissur,<br>
+        Kerala, India
+      </div>
+
+      <img
+        class="qr"
+        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DSt.%2BJoseph%2527s%2BChurch%2BKuriachira%2BThrissur%2BKerala"
+        alt="QR code for St Joseph's Church">
+
+      <a
+        class="map-link"
+        href="https://www.google.com/maps/search/?api=1&query=St.+Joseph%27s+Church+Kuriachira+Thrissur+Kerala"
+        target="_blank"
+        rel="noopener">
+        Get Directions
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- RECEPTION -->
+
+  <section class="venue-section">
+
+    <div class="eyebrow">
+      Let us celebrate together
+    </div>
+
+    <h3 class="section-title">
+      The Reception
+    </h3>
+
+    <div class="venue-card">
+
+      <div class="venue-label">
+        Reception Venue
+      </div>
+
+      <div class="venue-name">
+        Le Grand Auditorium
+      </div>
+
+      <div class="venue-address">
+        Thrissur, Kerala, India
+      </div>
+
+      <img
+        class="qr"
+        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DLe%2BGrand%2BAuditorium%2BThrissur%2BKerala"
+        alt="QR code for Le Grand Auditorium">
+
+      <a
+        class="map-link"
+        href="https://www.google.com/maps/search/?api=1&query=Le+Grand+Auditorium+Thrissur+Kerala"
+        target="_blank"
+        rel="noopener">
+        Get Directions
+      </a>
+
+    </div>
+
+  </section>
+
+  <div class="ornament">✧ ❀ ✧</div>
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    <div class="footer-script">
+      With love and blessings
+    </div>
+
+    <div class="footer-small">
+      WE LOOK FORWARD TO CELEBRATING WITH YOU
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+</div>
+
+<script>
+
+/* OPEN INVITATION */
+
+function openInvitation() {
+
+  const opening = document.getElementById("opening");
+
+  if (opening.classList.contains("opened")) return;
+
+  opening.classList.add("opened");
+
+  document.getElementById("openHint").textContent =
+    "Your invitation is opening...";
+
+  setTimeout(() => {
+
+    document.body.classList.add("invitation-open");
+
+    document.getElementById("invitationContent").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+  }, 1300);
+
+}
+
+/* FALLING SNOWFLAKES */
+
+const snowContainer =
+  document.getElementById("snowContainer");
+
+const snowSymbols = ["❄", "❅", "❆", "✧", "•"];
+
+for (let i = 0; i < 45; i++) {
+
+  const snowflake = document.createElement("span");
+
+  snowflake.className = "snowflake";
+
+  snowflake.textContent =
+    snowSymbols[Math.floor(Math.random() * snowSymbols.length)];
+
+  snowflake.style.left =
+    Math.random() * 100 + "%";
+
+  snowflake.style.fontSize =
+    (Math.random() * 13 + 7) + "px";
+
+  snowflake.style.animationDuration =
+    (Math.random() * 9 + 7) + "s";
+
+  snowflake.style.animationDelay =
+    (Math.random() * 12) + "s";
+
+  snowflake.style.opacity =
+    Math.random() * 0.6 + 0.3;
+
+  snowContainer.appendChild(snowflake);
+
+}
+
+/* COUNTDOWN - JANUARY 30, 2027 AT 11 AM */
+
+const eventDate =
+  new Date("2027-01-30T11:00:00+05:30").getTime();
+
+function updateCountdown() {
+
+  const now = new Date().getTime();
+
+  const distance = eventDate - now;
+
+  if (distance <= 0) {
+
+    ["days", "hours", "minutes", "seconds"].forEach(id => {
+
+      document.getElementById(id).textContent = "00";
+
+    });
+
+    return;
+  }
+
+  document.getElementById("days").textContent =
+    Math.floor(distance / (1000 * 60 * 60 * 24));
+
+  document.getElementById("hours").textContent =
+    Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) /
+      (1000 * 60 * 60)
+    );
+
+  document.getElementById("minutes").textContent =
+    Math.floor(
+      (distance % (1000 * 60 * 60)) /
+      (1000 * 60)
+    );
+
+  document.getElementById("seconds").textContent =
+    Math.floor(
+      (distance % (1000 * 60)) / 1000
+    );
+
+}
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
+</script>
+
+</body>
+</html>
